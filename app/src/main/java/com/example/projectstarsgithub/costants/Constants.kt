@@ -19,4 +19,6 @@ object Constants {
   const val REPOSITORIES_VIEW_MODEL = "RepositoriesViewModel"
   const val REPOSITORIES_VIEW = "RepositoriesView"
   const val QUERY_LIMIT_EXCEEDED = "Você atingiu o limite para consultas não autenticada"
+
+  const val LIST_REPOSITORIES = "LIST_REPOSITORIES"
 }

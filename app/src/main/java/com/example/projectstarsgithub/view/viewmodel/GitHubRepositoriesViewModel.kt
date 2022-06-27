@@ -17,6 +17,7 @@ class GitHubRepositoriesViewModel(context: Context) : ViewModel() {
   private val repository = GitHubRepositoriesRepository(context)
   var dataInfo: DataInfo? = null
   private var currentPage = 0
+  var list: List<GitHubRepositoriesInfoModel>? = null
 
   fun clearData(): Completable {
     currentPage = 0

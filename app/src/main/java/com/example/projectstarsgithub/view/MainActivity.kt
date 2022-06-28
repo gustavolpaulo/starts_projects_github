@@ -5,13 +5,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectstarsgithub.R
 import com.example.projectstarsgithub.costants.Constants
 import com.example.projectstarsgithub.databinding.ActivityMainBinding
-import com.example.projectstarsgithub.models.GitHubRepositoriesInfoModel
 import com.example.projectstarsgithub.view.adapter.CustomAdapter
 import com.example.projectstarsgithub.view.viewmodel.GitHubRepositoriesViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -34,6 +33,13 @@ class MainActivity : AppCompatActivity() {
   private fun initView() {
     setupRecycler()
     setupSwipeRefresh()
+//
+//    val model = ViewModelProvider(this).get(GitHubRepositoriesViewModel::class.java)
+//
+//    model.getListRepositories().observe(this, {
+//      mAdapter?.updateList(it)
+//      loadingFinish()
+//    })
     updateData(true)
     viewBinding.listRepositories.scrollToPosition(0)
   }
@@ -148,23 +154,6 @@ class MainActivity : AppCompatActivity() {
 
       mAdapter?.removeLoading()
     }
-  }
-
-  override fun onSaveInstanceState(outState: Bundle) { // Here You have to save count value
-    super.onSaveInstanceState(outState)
-    Log.i("MyTag", "onSaveInstanceState")
-
-    val pair = Pair(Constants.LIST_REPOSITORIES, viewModel.list)
-
-    outState.putBundle(Constants.LIST_REPOSITORIES, bundleOf(pair))
-  }
-
-  override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-    super.onRestoreInstanceState(savedInstanceState)
-    Log.i("MyTag", "onRestoreInstanceState")
-
-    val bundle: Bundle? = savedInstanceState.getBundle(Constants.LIST_REPOSITORIES)
-    viewModel.list = bundle?.get(Constants.LIST_REPOSITORIES) as List<GitHubRepositoriesInfoModel>
   }
 
   override fun onDestroy() {

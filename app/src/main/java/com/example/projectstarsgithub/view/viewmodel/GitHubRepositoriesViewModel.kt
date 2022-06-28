@@ -1,7 +1,10 @@
 package com.example.projectstarsgithub.view.viewmodel
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.projectstarsgithub.costants.Constants
 import com.example.projectstarsgithub.models.GitHubRepositoriesInfoModel
@@ -17,7 +20,18 @@ class GitHubRepositoriesViewModel(context: Context) : ViewModel() {
   private val repository = GitHubRepositoriesRepository(context)
   var dataInfo: DataInfo? = null
   private var currentPage = 0
-  var list: List<GitHubRepositoriesInfoModel>? = null
+//  private val listRepositories: MutableLiveData<List<GitHubRepositoriesInfoModel>>
+//
+//  init {
+//    listRepositories = MutableLiveData()
+//    searchGitHubRepositories(1).subscribe({
+//      listRepositories.value = it
+//    })
+//  }
+//
+//  fun getListRepositories(): LiveData<List<GitHubRepositoriesInfoModel>> {
+//    return listRepositories
+//  }
 
   fun clearData(): Completable {
     currentPage = 0
